@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Client</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Client Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Client</p>
+
+    <form action="#" th:action="@{/clients/save}"
+          th:object="${client}" method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <input type="text" th:field="*{name}"
+               class="form-control mb-4 col-4" placeholder="First name">
+
+        <textarea th:field="*{description}"
+                  class="form-control mb-4 col-4" placeholder="Description"></textarea>
+
+        <input type="text" th:field="*{contacts[1].comment}"
+               class="form-control mb-4 col-4">
+
+        <th:block th:each="phone : ${phones}">
+            <!--            <input type="text" th:field="${phone.phoneNumber}"-->
+            <!--                   class="form-control mb-4 col-4" placeholder="Phone Number">-->
+            <p th:text="${phone.phoneNumber}"></p>
+            <p th:text="${phone.canCall}"></p>
+            <p th:text="${phone.canSms}"></p>
+            <p th:text="${phone.canWhatsApp}"></p>
+
+            <!--				<input type="text" th:field="${phone.phoneNumber}">-->
+            <!--				<input type="checkbox" th:field="${phone.canCall}" placeholder="true">-->
+
+
+            <!--				<th:block th:switch="${contact.class.simpleName}">-->
+            <!--					<p th:case="'InstagramContact'" th:with="${T(shottkey.barberCrm.model.PhoneContact)contact}">Instagram</p>-->
+            <!--					<p th:case="'PhoneContact'">Phone</p>-->
+            <!--					<p th:case="'VkContact'">Vk</p>-->
+            <!--				</th:block>-->
+        </th:block>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/clients}">Back to Clients List</a>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
